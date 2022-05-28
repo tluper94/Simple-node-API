@@ -11,7 +11,7 @@ function resJSON(res, obj) {
   res.end(JSON.stringify(obj));
 }
 
-function file(res, file, type) {
+function static(res, file, type) {
   fs.readFile(file, (err, data) => {
     res.writeHead(200, { 'Content-Type': `text/${type}` });
     res.write(data);
@@ -23,7 +23,7 @@ function file(res, file, type) {
 
 // Route's Functions
 function home(req, res) {
-  file(res, 'index.html', 'html');
+  static(res, 'index.html', 'html');
 }
 
 function API(req, res, params) {
@@ -84,11 +84,11 @@ function API(req, res, params) {
 }
 
 function CSS(req, res) {
-  file(res, 'css/style.css', 'css');
+  static(res, 'css/style.css', 'css');
 }
 
 function js(req, res) {
-  file(res, 'js/main.js', 'javascript');
+  static(res, 'js/main.js', 'javascript');
 }
 
 function notFound(req, res) {
